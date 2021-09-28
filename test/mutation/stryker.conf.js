@@ -11,9 +11,11 @@ const strykerConfiguration = config => {
       ],
     files:
         [
-          'app/server/controllers/policies.ts',
-          'test/unit/controllers/policies.test.ts',
+          'app/server/services/*.ts',
+          'app/server/services/request-wrapper.ts',
+          'test/unit/services/*.test.ts',
           'test/chai-sinon.ts',
+          'test/fixtures/evidence/evidence.txt',
           'config/*.json',
           'app/server/paths.ts'
         ],
@@ -21,8 +23,8 @@ const strykerConfiguration = config => {
     testRunner: 'mocha',
     mutate:
       [
-        'app/server/controllers/policies.ts',
-        '!test/unit/controllers/policies.ts'
+        'app/server/services/*.ts',
+        '!test/unit/services/*.test.ts'
       ],
     maxConcurrentTestRunners: 2,
     coverageAnalysis: 'perTest',
@@ -30,7 +32,7 @@ const strykerConfiguration = config => {
     tsconfigFile: 'app/server/tsconfig.json',
     mochaOptions: {
       spec:
-        ['test/unit/controllers/policies.test.ts'],
+        ['test/unit/services/*.test.ts'],
       timeout: 8000
     },
     logLevel: 'debug'
