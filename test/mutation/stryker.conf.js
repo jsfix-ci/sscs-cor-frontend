@@ -11,9 +11,6 @@ const strykerConfiguration = config => {
     files:
         [
           'app/server/controllers/*.ts',
-          'app/server/services/*.ts',
-          'app/server/middleware/*.ts',
-          'app/server/utils/*.ts',
           'app/server/utils/featureEnabled.ts'
         ],
     testFramework: 'mocha',
@@ -21,13 +18,7 @@ const strykerConfiguration = config => {
     mutate:
       [
         'app/server/controllers/*.ts',
-        'app/server/services/*.ts',
-        'app/server/middleware/*.ts',
-        'app/server/utils/*.ts',
-        '!test/unit/controllers/*.test.ts',
-        '!test/unit/services/*.test.ts',
-        '!test/unit/middleware/*.test.ts',
-        '!test/unit/utils/*.test.ts'
+        '!test/unit/controllers/*.test.ts'
       ],
     maxConcurrentTestRunners: 2,
     coverageAnalysis: 'perTest',
@@ -35,12 +26,7 @@ const strykerConfiguration = config => {
     tsconfigFile: 'app/server/tsconfig.json',
     mochaOptions: {
       spec:
-        [
-          'test/unit/controllers/*.test.ts',
-          'test/unit/services/*.test.ts',
-          'test/unit/middleware/*.test.ts',
-          'test/unit/utils/*.test.ts'
-        ],
+        ['test/unit/controllers/*.test.ts'],
       timeout: 8000
     },
     logLevel: 'debug'
