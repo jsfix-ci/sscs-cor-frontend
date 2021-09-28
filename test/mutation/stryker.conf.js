@@ -2,6 +2,7 @@ const strykerConfiguration = config => {
   config.set({
     mutator: 'typescript',
     transpilers: ['typescript'],
+    tempDirName: 'strykerTmp',
     reporters:
       [
         'clear-text',
@@ -10,15 +11,17 @@ const strykerConfiguration = config => {
       ],
     files:
         [
-          'app/server/controllers/*.ts',
-          'app/server/utils/featureEnabled.ts'
+          'app/**',
+          'test/unit/**',
+          'test/chai-sinon.ts',
+          'config/*.json'
         ],
     testFramework: 'mocha',
     testRunner: 'mocha',
     mutate:
       [
-        'app/server/controllers/*.ts',
-        '!test/unit/controllers/*.test.ts'
+        'app/server/controllers/additional-evidence.ts',
+        '!test/unit/controllers/additional-evidence.ts'
       ],
     maxConcurrentTestRunners: 2,
     coverageAnalysis: 'perTest',
@@ -26,7 +29,7 @@ const strykerConfiguration = config => {
     tsconfigFile: 'app/server/tsconfig.json',
     mochaOptions: {
       spec:
-        ['test/unit/controllers/*.test.ts'],
+        ['test/unit/controllers/additional-evidence.test.ts'],
       timeout: 8000
     },
     logLevel: 'debug'
