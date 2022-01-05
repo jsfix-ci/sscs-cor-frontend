@@ -1225,7 +1225,7 @@
       "location": "Lleoliad",
       "provideInformationOnline": "Darparu eich gwybodaeth ar-lein",
       "uploadLettersDocumentPhotos": "Uwchlwytho llythyrau, dogfennau neu luniau",
-      "uploadLettersDocumentPhotosAudioVideo": "Uwchlwytho llythyrau, dogfennau neu ffeiliau llun, sain neu fideo",
+      "uploadAudioVideo": "Lanlwytho ffeiliau sain neu fideo",
       "sendByPost": "Anfon drwy’r post",
       "submitEvidenceToTribunal": "Cyflwyno tystiolaeth i’r tribiwnlys",
       "loading": "Yn llwytho",
