@@ -1,7 +1,7 @@
 import { IdamService } from 'app/server/services/idam';
 import * as Service2Service from 'app/server/services/s2s';
 const { expect, sinon } = require('test/chai-sinon');
-import { getLogout, getIdamCallback, setupLoginController, redirectToLogin, redirectToIdam } from 'app/server/controllers/login.ts';
+import { getLogout, getIdamCallback, setupLoginController, redirectToLogin, redirectToIdam } from 'app/server/controllers/login';
 import * as AppInsights from 'app/server/app-insights';
 import * as express from 'express';
 import * as Paths from 'app/server/paths';

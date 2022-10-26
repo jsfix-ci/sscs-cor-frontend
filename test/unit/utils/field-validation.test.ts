@@ -1,5 +1,5 @@
 const { expect } = require('test/chai-sinon');
-import { answerValidation, loginEmailAddressValidation, newHearingAcceptedValidation, hearingWhyValidation, uploadDescriptionValidation } from 'app/server/utils/fieldValidation.ts';
+import { answerValidation, loginEmailAddressValidation, newHearingAcceptedValidation, hearingWhyValidation, uploadDescriptionValidation } from 'app/server/utils/fieldValidation';
 const content = require('locale/content');
 
 describe('utils/fieldValidation.js', () => {

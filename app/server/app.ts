@@ -1,24 +1,23 @@
 import * as AppInsights from './app-insights';
-const { Express } = require('@hmcts/nodejs-logging');
-import { RequestHandler } from 'express';
 import express = require('express');
 import { router as routes } from './routes';
-const errors = require('./middleware/error-handler');
 import * as health from './middleware/health';
-const content = require('../../locale/content');
 import * as Paths from './paths';
-const bodyParser = require('body-parser');
 import * as cookieParser from 'cookie-parser';
+import * as screenReaderUtils from './utils/screenReaderUtils';
+import { configureHeaders, configureHelmet, configureNunjucks } from './app-configurations';
+import watch from './watch';
+import * as config from 'config';
+import { Feature, isFeatureEnabled } from './utils/featureEnabled';
+import { csrfToken, csrfTokenEmbed } from './middleware/csrf';
+
+const { Express } = require('@hmcts/nodejs-logging');
+const errors = require('./middleware/error-handler');
+const content = require('../../locale/content');
+const bodyParser = require('body-parser');
 const { fileTypes, fileTypesWithAudioVideo } = require('./utils/mimeTypeWhitelist');
 const i18next = require('i18next');
 const i18nextMiddleware = require('i18next-express-middleware');
-
-import * as screenReaderUtils from './utils/screenReaderUtils';
-import { configureHelmet, configureHeaders, configureNunjucks } from './app-configurations';
-import watch from './watch';
-import * as config from 'config';
-import { isFeatureEnabled, Feature } from './utils/featureEnabled';
-import { csrfToken, csrfTokenEmbed } from './middleware/csrf';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -26,7 +25,7 @@ interface Options {
   disableAppInsights ?: boolean;
 }
 
-function setup(sessionHandler: RequestHandler, options: Options) {
+function setup(sessionHandler: express.RequestHandler, options: Options) {
   i18next.init({
     resources: content,
     supportedLngs: config.get('languages'),

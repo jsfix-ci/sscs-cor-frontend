@@ -1,0 +1,9 @@
+package: './package.json'
+require:
+  - 'ts-node/register'
+  - 'source-map-support/register'
+  - 'tsconfig-paths/register'
+timeout: '180000'
+bail: true
+colors: true
+full-trace: true

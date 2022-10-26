@@ -7,9 +7,13 @@ const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
 const config = require('config');
 
 const client = ioRedis.createClient(
-        config.session.redis.url,
-        { enableOfflineQueue: false }
+  config.session.redis.url,
+  { enableOfflineQueue: false }
 );
+
+const clientConnect = async() => {
+  await client.connect();
+};
 
 client.on('error', error => {
   AppInsights.trackTrace(`Health check failed on redis: ${error}`);
@@ -31,13 +35,15 @@ const healthOptions = message => {
 function getHealthConfigure() {
   return healthCheck.configure({
     checks: {
-      redis: healthCheck.raw(() => client.ping().then(_ => healthCheck.status(_ === 'PONG'))
-      .catch(error => {
-        AppInsights.trackTrace(`Health check failed on redis: ${error}`);
-        return outputs.down(error);
-      })),
+      redis: healthCheck.raw(() => {
+        client.ping().then(_ => healthCheck.status(_ === 'PONG'))
+          .catch(error => {
+            AppInsights.trackTrace(`Health check failed on redis: ${error}`);
+            return outputs.down(error);
+          });
+      }),
       'manage-your-appeal-api': healthCheck.web(`${config.api.url}/health`,
-              healthOptions('Health check failed on manage-your-appeal-api:')
+        healthOptions('Health check failed on manage-your-appeal-api:')
       )
     },
     buildInfo: {
@@ -52,12 +58,12 @@ function getReadinessConfigure() {
   return healthCheck.configure({
     readinessChecks: {
       redis: healthCheck.raw(() => client.ping().then(_ => healthCheck.status(_ === 'PONG'))
-      .catch(error => {
-        AppInsights.trackTrace(`Readiness check failed on redis: ${error}`);
-        return outputs.down(error);
-      })),
+        .catch(error => {
+          AppInsights.trackTrace(`Readiness check failed on redis: ${error}`);
+          return outputs.down(error);
+        })),
       'mmanage-your-appeal-api': healthCheck.web(`${config.api.url}/health/readiness`,
-              healthOptions('Readiness check failed on manage-your-appeal-api:')
+        healthOptions('Readiness check failed on manage-your-appeal-api:')
       )
     },
     buildInfo: {

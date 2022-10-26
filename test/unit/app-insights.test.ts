@@ -1,6 +1,6 @@
 const { expect, sinon } = require('test/chai-sinon');
 import * as applicationInsights from 'applicationinsights';
-import * as AppInsights from 'app/server/app-insights.ts';
+import * as AppInsights from 'app/server/app-insights';
 const config = require('config');
 
 describe('app-insights.js', () => {

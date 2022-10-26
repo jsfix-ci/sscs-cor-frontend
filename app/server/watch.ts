@@ -1,4 +1,5 @@
 import chokidar = require('chokidar');
+
 const shell = require('shelljs');
 const { Logger } = require('@hmcts/nodejs-logging');
 const reload = require('reload');

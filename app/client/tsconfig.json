@@ -2,6 +2,6 @@
   "extends": "../../tsconfig",
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es5", "es6", "dom"]
+    "lib": ["es2018", "es5", "es6", "dom"]
   }
 }
