@@ -3,14 +3,7 @@ govukPhaseBanner %} {% from "components/mya-contact-us.njk" import contactUs
 with context %} {% from "components/footer/macro.njk" import govukFooter %} {%
 set assetPath = "/public/govuk-frontend/" %} {% block pageTitle %} {{
 content[i18n.language].pageTitle | safe }} {% endblock %} {% block head %} {%
-include "includes/head.njk" %} {% endblock %} {% block header %} {% if
-cookieBannerEnabled %}
-<div>
-  {% include
-  "../cookie-banner/common/components/imported/cookie-manager/cookie-banner.njk"
-  %}
-</div>
-{% else %} {% include "includes/cookie-banner.njk" %} {% endif %} {% include
+include "includes/head.njk" %} {% endblock %} {% block header %} {% include "includes/cookie-banner.njk" %} {% include
 "includes/header.njk" %} {% endblock %} {% block bodyStart %}
 <!-- Google Tag Manager (noscript) -->
 <noscript

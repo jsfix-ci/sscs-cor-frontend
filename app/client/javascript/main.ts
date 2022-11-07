@@ -7,22 +7,25 @@ import { SessionInactivity } from './session-inactivity';
 import { DetailsTabIndexToggle } from './detailsToggle';
 import { RequestType } from './request-type';
 import { EvidenceStatement } from './evidence-statement';
+import { CookiesManager } from './cookie-manager';
 
 const domready = require('domready');
 
-function goBack() {
+function goBack(): boolean {
   window.history.go(-1);
   return false;
 }
 
-function initCookieBanner() {
+function initCookieBanner(): void {
+  const cookiesManager = new CookiesManager();
+  cookiesManager.init();
   if (document.querySelector('#app-cookie-banner')) {
     const checkCookies = new CheckCookies();
     checkCookies.init();
   }
 }
 
-const onReady = () => {
+function onReady(): void {
   const evidence = new EvidenceUpload();
   const evidenceAudioVideo = new EvidenceUploadAudioVideo();
   const sessionInactivity = new SessionInactivity();
@@ -40,7 +43,7 @@ const onReady = () => {
   document
     .querySelectorAll('#buttonBack')
     .forEach((element) => element.addEventListener('click', goBack));
-};
+}
 
 domready(onReady);
 
