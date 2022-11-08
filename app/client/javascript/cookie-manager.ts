@@ -51,6 +51,6 @@ export class CookiesManager {
   };
 
   init(): void {
-    // hmctsCookieManager.init(this.cookieManagerConfig);
+    hmctsCookieManager.default.init(this.cookieManagerConfig);
   }
 }
