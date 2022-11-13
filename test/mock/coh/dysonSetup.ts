@@ -1,12 +1,12 @@
-const dyson = require('dyson');
-const path = require('path');
+import { getConfigurations, createServer, registerServices } from 'dyson';
+import { resolve } from 'path';
 
-export = () => {
+export function dysonSetupCoh(): void {
   const dysonOptions = {
-    configDir: path.resolve(__dirname, './services/'),
+    configDir: resolve(__dirname, './services/'),
     port: 8081,
   };
-  const configs = dyson.getConfigurations(dysonOptions);
-  const appBefore = dyson.createServer(dysonOptions);
-  dyson.registerServices(appBefore, dysonOptions, configs);
-};
+  const configs = getConfigurations(dysonOptions);
+  const appBefore = createServer(dysonOptions);
+  registerServices(appBefore, dysonOptions, configs);
+}

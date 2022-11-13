@@ -1,16 +1,16 @@
-const dyson = require('dyson');
-const path = require('path');
-const multer = require('multer');
+import { getConfigurations, createServer, registerServices } from 'dyson';
+import { resolve } from 'path';
+import * as multer from 'multer';
 
 const upload = multer();
 
-export = () => {
+export function dysonSetupCorBackend(): void {
   const dysonOptions = {
-    configDir: path.resolve(__dirname, './services/'),
+    configDir: resolve(__dirname, './services/'),
     port: 8090,
   };
-  const configs = dyson.getConfigurations(dysonOptions);
-  const appBefore = dyson.createServer(dysonOptions);
+  const configs = getConfigurations(dysonOptions);
+  const appBefore = createServer(dysonOptions);
   appBefore.use(upload.any());
-  dyson.registerServices(appBefore, dysonOptions, configs);
-};
+  registerServices(appBefore, dysonOptions, configs);
+}
