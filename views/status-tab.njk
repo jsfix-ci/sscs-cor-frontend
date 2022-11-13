@@ -8,7 +8,7 @@ content[i18n.language].benefitTypes[appeal.benefitType].yourBenefitAppeal }} -
 {{ content[i18n.language].statusTab.tabHeader }} - {{
 content[i18n.language].general.govUK }} {% endblock %} {% block corContent %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">
       {{ content[i18n.language].benefitTypes[appeal.benefitType].yourBenefitAppeal }}
     </h1>
@@ -21,7 +21,7 @@ content[i18n.language].general.govUK }} {% endblock %} {% block corContent %}
   {% include "includes/divider.njk" %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
       {{ navigationTabs("status") }}
       <div class="task-list">
         <h2 class="govuk-heading-m --margin-bottom-s">
